@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
 
+
+//ESTE ES UN NUEVO COMENTARIO
+
 public class ConexionBD {
     //Declaramos las variables necesarias para la conexion
     private static String USER = "root2"; //usuario de la base de datos
