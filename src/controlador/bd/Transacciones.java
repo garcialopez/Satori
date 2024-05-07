@@ -10,7 +10,7 @@ import java.util.List;
 import modelo.Academia;
 
 public class Transacciones {
-
+    //metodo para insertar un usuario
     public boolean insertarAcademia(Academia academia) {
         if (ConexionBD.conectarBD()) {
             try {
