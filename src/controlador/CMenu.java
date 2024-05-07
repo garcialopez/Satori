@@ -8,6 +8,7 @@ import vista.VDocentes;
 import vista.VLaboratorios;
 import vista.VMaterias;
 import vista.VMenu;
+import vista.VReservacion;
 
 /**
  *
@@ -75,14 +76,19 @@ public class CMenu implements ActionListener {
         } else if (e.getSource() == this.menu.itemSalir) {
             System.exit(0);
 
-        } //close if
+        } else if (e.getSource() == this.menu.itemReservaciones) {
+            VReservacion dialog = new VReservacion(this.menu, true);
+            CReservacion cReservacion = new CReservacion(dialog);
+            cReservacion.iniciarReservacion();
+            
+        }
 
     } //close actionPerformed
 
     private void bloqueoTemporal() {
         this.menu.menuAyuda.setEnabled(false);
-        this.menu.itemHorario.setEnabled(false);
-        this.menu.itemMaterias.setEnabled(false);
+//        this.menu.itemHorario.setEnabled(false);
+//        this.menu.itemMaterias.setEnabled(false);
     }
 
 } //close class

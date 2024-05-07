@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 
 
 //ESTE ES UN NUEVO COMENTARIO
+//HOla profeee
 
 public class ConexionBD {
     //Declaramos las variables necesarias para la conexion

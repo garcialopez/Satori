@@ -38,6 +38,7 @@ public class VMenu extends javax.swing.JFrame {
         itemHorario = new javax.swing.JMenuItem();
         itemLaboratorios = new javax.swing.JMenuItem();
         itemMaterias = new javax.swing.JMenuItem();
+        itemReservaciones = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
         itemAcercaDe = new javax.swing.JMenuItem();
 
@@ -116,6 +117,12 @@ public class VMenu extends javax.swing.JFrame {
         itemMaterias.setText("Materias");
         menuDepartamento.add(itemMaterias);
 
+        itemReservaciones.setBackground(new java.awt.Color(98, 17, 50));
+        itemReservaciones.setFont(new java.awt.Font("Open Sans", 0, 16)); // NOI18N
+        itemReservaciones.setForeground(new java.awt.Color(255, 255, 255));
+        itemReservaciones.setText("Reservaciones");
+        menuDepartamento.add(itemReservaciones);
+
         jMenuBar1.add(menuDepartamento);
 
         menuAyuda.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,6 +160,7 @@ public class VMenu extends javax.swing.JFrame {
     public javax.swing.JMenuItem itemLaboratorios;
     public javax.swing.JMenuItem itemMaterias;
     public javax.swing.JMenuItem itemProfesores;
+    public javax.swing.JMenuItem itemReservaciones;
     public javax.swing.JMenuItem itemSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
