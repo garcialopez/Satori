@@ -5,12 +5,22 @@ package modelo;
  * @author adrian
  */
 public class Docente {
-    
+
     private int idEmpleado;
+    private int numeroEmpleado;
     private String nombres;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
-    private String academia;
+    private String apellidos;
+    private int academia;
+
+    public int getNumeroEmpleado() {
+        return numeroEmpleado;
+    }
+
+    public void setNumeroEmpleado(int numeroEmpleado) {
+        this.numeroEmpleado = numeroEmpleado;
+    }
+
+
 
     public int getIdEmpleado() {
         return idEmpleado;
@@ -28,30 +38,22 @@ public class Docente {
         this.nombres = nombres;
     }
 
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
-    }
-
-    public String getAcademia() {
+    public int getAcademia() {
         return academia;
     }
 
-    public void setAcademia(String academia) {
+    public void setAcademia(int academia) {
         this.academia = academia;
     }
-    
-    
-    
+
+
+
 }

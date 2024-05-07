@@ -45,7 +45,7 @@ public class Transacciones {
             }//cierra catch
         } //cierraif
         return false;
-    }//cierra metodo insertarAcademia
+    }//cierra metodo insertar Academia
 
     public List<Object[]> seleccionar(Academia academia){
         List<Object[]> resultado = null;
@@ -62,7 +62,6 @@ public class Transacciones {
 
                 while(rst.next()){
                     Object[] registro = new Object[cantCol];
-
                     for (int i = 0; i < cantCol; i++) {
                         registro[i] = rst.getObject( i + 1);
                     }//cierra for

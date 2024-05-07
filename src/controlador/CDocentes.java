@@ -1,8 +1,12 @@
 package controlador;
 
+import controlador.bd.Transacciones;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import modelo.Academia;
 import modelo.Docente;
 import vista.VDocentes;
 
@@ -15,10 +19,11 @@ public class CDocentes implements ActionListener {
     VDocentes vDocentes;
     Docente docente;
 
-    private int contador;
-    private int idFilaTemporal;
 
     DefaultTableModel modelo;
+
+    List<Object[]> academias;
+    int indiceBoxSeleccionado = -1;
 
     public CDocentes(VDocentes docentes) {
         this.vDocentes = docentes;
@@ -29,8 +34,10 @@ public class CDocentes implements ActionListener {
         this.vDocentes.btnModificar.addActionListener(this);
         this.vDocentes.btnEliminar.addActionListener(this);
 
-        this.contador = 1;
-        this.idFilaTemporal = -1;
+
+
+        academias = new ArrayList();
+
     }
 
     public void iniciarDocentes() {
@@ -60,47 +67,51 @@ public class CDocentes implements ActionListener {
             this.borrar();
         }
     }
-    
+
     private void limpiarCampos() {
-        this.idFilaTemporal = -1;
-        
+
+
         this.vDocentes.txtNumeroEmpleado.setText("");
         this.vDocentes.txtNombres.setText("");
         this.vDocentes.txtApellidoPaterno.setText("");
         this.vDocentes.txtApellidoMaterno.setText("");
         this.vDocentes.boxAcademia.setSelectedIndex(0);
     }
-    
+
     private void insertar() {
         this.docente = new Docente();
 
         //recogemos los datos
-        int id = Integer.parseInt(this.vDocentes.txtNumeroEmpleado.getText());
+        int numeroEmpleado = Integer.parseInt(this.vDocentes.txtNumeroEmpleado.getText());
         String nombre = this.vDocentes.txtNombres.getText();
         String apellidoPaterno = this.vDocentes.txtApellidoPaterno.getText();
-        String apellidoMaterno = this.vDocentes.txtApellidoMaterno.getText();                       
-        String academia = this.vDocentes.boxAcademia.getSelectedItem().toString();
+        String apellidoMaterno = this.vDocentes.txtApellidoMaterno.getText();
+
+        indiceBoxSeleccionado = this.vDocentes.boxAcademia.getSelectedIndex();
+        Object idAux = academias.get(indiceBoxSeleccionado)[0];
+        int idAcademia = Integer.parseInt(idAux.toString());
+
+        String apellidos = apellidoPaterno + " " + apellidoMaterno;
 
         //asignamos al objeto
-        this.docente.setIdEmpleado(id);
+        this.docente.setNumeroEmpleado(numeroEmpleado);
         this.docente.setNombres(nombre);
-        this.docente.setApellidoPaterno(apellidoPaterno);
-        this.docente.setApellidoMaterno(apellidoMaterno);
-        this.docente.setAcademia(academia);
+        this.docente.setApellidos(apellidos);
+        this.docente.setAcademia(idAcademia);
 
-        this.modelo.addRow(new Object[]{
-            this.docente.getIdEmpleado(),
-            this.docente.getNombres(),
-            this.docente.getApellidoPaterno(),
-            this.docente.getApellidoMaterno(),
-            this.docente.getAcademia(),
-        });
+        Transacciones t = new Transacciones();
 
-        this.vDocentes.tblRegistros.setModel(this.modelo);
 
-        this.contador++;
-    }
-    
+
+//        if( t.insertarDocente(docente) ){
+//            //INSERTO
+//        } else {
+//            //NO INSERTO
+//        }
+
+
+    }// cierrametodo insertar
+
     private void buscar() {
         int idBuscar = Integer.parseInt(this.vDocentes.txtBuscar.getText());
 
@@ -110,60 +121,55 @@ public class CDocentes implements ActionListener {
 
             int idModelo = Integer.parseInt(modelo.getValueAt(i, 0).toString());
 
-            if (idModelo == idBuscar) {       
-                this.idFilaTemporal = i;
-                this.vDocentes.txtNumeroEmpleado.setText(idModelo+"");                
-                this.vDocentes.txtNombres.setText(modelo.getValueAt(i, 1).toString());  
-                this.vDocentes.txtApellidoPaterno.setText(modelo.getValueAt(i, 2).toString());  
-                this.vDocentes.txtApellidoMaterno.setText(modelo.getValueAt(i, 3).toString());  
-                this.vDocentes.boxAcademia.setSelectedItem(modelo.getValueAt(i, 4).toString());  
+            if (idModelo == idBuscar) {
+
+                this.vDocentes.txtNumeroEmpleado.setText(idModelo+"");
+                this.vDocentes.txtNombres.setText(modelo.getValueAt(i, 1).toString());
+                this.vDocentes.txtApellidoPaterno.setText(modelo.getValueAt(i, 2).toString());
+                this.vDocentes.txtApellidoMaterno.setText(modelo.getValueAt(i, 3).toString());
+                this.vDocentes.boxAcademia.setSelectedItem(modelo.getValueAt(i, 4).toString());
                 break;
             }
         }
     }
-    
+
     private void borrar(){
-        this.modelo.removeRow(this.idFilaTemporal);
+
         this.vDocentes.tblRegistros.setModel(this.modelo);
     }
-    
+
     private void modificar(){
         this.docente = new Docente();
 
-        //recogemos los datos        
+        //recogemos los datos
         //recogemos los datos
         int id = Integer.parseInt(this.vDocentes.txtNumeroEmpleado.getText());
         String nombre = this.vDocentes.txtNombres.getText();
         String apellidoPaterno = this.vDocentes.txtApellidoPaterno.getText();
-        String apellidoMaterno = this.vDocentes.txtApellidoMaterno.getText();                       
+        String apellidoMaterno = this.vDocentes.txtApellidoMaterno.getText();
         String academia = this.vDocentes.boxAcademia.getSelectedItem().toString();
 
-        //asignamos al objeto        
+        //asignamos al objeto
         //asignamos al objeto
         this.docente.setIdEmpleado(id);
         this.docente.setNombres(nombre);
-        this.docente.setApellidoPaterno(apellidoPaterno);
-        this.docente.setApellidoMaterno(apellidoMaterno);
-        this.docente.setAcademia(academia);
-        
-        this.modelo.setValueAt(this.docente.getIdEmpleado(), this.idFilaTemporal, 0);
-        this.modelo.setValueAt(this.docente.getNombres(), this.idFilaTemporal, 1);
-        this.modelo.setValueAt(this.docente.getApellidoPaterno(), this.idFilaTemporal, 2);
-        this.modelo.setValueAt(this.docente.getApellidoMaterno(), this.idFilaTemporal, 3);
-        this.modelo.setValueAt(this.docente.getAcademia(), this.idFilaTemporal, 4);
-        
+        this.docente.setApellidos(apellidoPaterno);
+//        this.docente.setApellidoMaterno(apellidoMaterno);
+//        this.docente.setAcademia(academia);
+
+
         this.vDocentes.tblRegistros.setModel(this.modelo);
     }
-    
-    private void iniciarTabla() {                
-        
+
+    private void iniciarTabla() {
+
         this.modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Hacer que todas las celdas sean no editables
             }
-        };                
-        
+        };
+
         // Agregamos columnas al modelo
         this.modelo.addColumn("Número");
         this.modelo.addColumn("Nombre");
@@ -173,35 +179,21 @@ public class CDocentes implements ActionListener {
 
         // Agregamos unos datos de prueba
         // Agregar filas al modelo
-        this.modelo.addRow(new Object[]{
-            this.contador, 
-            "José Adrian",
-            "García",
-            "López",
-            "ISC"
-        });
-        this.contador++;
 
-        this.modelo.addRow(new Object[]{
-            this.contador, 
-            "Marcos",            
-            "López",
-            "Osorio",
-            "IGE"
-        });
-        this.contador++;
 
         //asinamos el modelo a la tabla
         this.vDocentes.tblRegistros.setModel(this.modelo);
     } // termina iniciarTabla
-    
+
     private void iniciarBox(){
         this.vDocentes.boxAcademia.removeAllItems();
-        this.vDocentes.boxAcademia.addItem("ISC");
-        this.vDocentes.boxAcademia.addItem("IGE");
-        this.vDocentes.boxAcademia.addItem("ID");
-        this.vDocentes.boxAcademia.addItem("LG");
-        this.vDocentes.boxAcademia.addItem("LCP");
-    }
+        Transacciones t = new Transacciones();
+        academias = t.seleccionar(new Academia());
+
+        for(int i = 0; i < academias.size(); i++){
+            Object[] registro = academias.get(i);
+            this.vDocentes.boxAcademia.addItem(registro[1].toString());
+        }//cierra for
+    }//cierra iniciarBox
 
 }
