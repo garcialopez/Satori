@@ -19,7 +19,7 @@ public class Satori {
 
         } catch (UnsupportedLookAndFeelException ex) {
             System.err.println("Error de LookAndFeel");
-        }
+        }//cierra catch
         
         VLogin login = new VLogin();
         CLogin cLogin = new CLogin(login);
