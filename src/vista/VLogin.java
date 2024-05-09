@@ -64,6 +64,7 @@ public class VLogin extends javax.swing.JFrame {
         jLabel3.setText("USUARIO");
 
         txtUsuario.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        txtUsuario.setText("admin");
 
         jLabel5.setFont(new java.awt.Font("Open Sans", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(98, 17, 50));
@@ -71,6 +72,7 @@ public class VLogin extends javax.swing.JFrame {
         jLabel5.setText("CONTRASEÑA");
 
         txtContrasena.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        txtContrasena.setText("123");
 
         btnIniciarSesion.setBackground(new java.awt.Color(98, 17, 50));
         btnIniciarSesion.setFont(new java.awt.Font("Open Sans", 1, 18)); // NOI18N
@@ -119,7 +121,7 @@ public class VLogin extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel3)
