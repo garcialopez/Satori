@@ -3,9 +3,7 @@ package controlador;
 import controlador.bd.Transacciones;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JOptionPane;
-
 import modelo.Usuario;
 import vista.VLogin;
 import vista.VMenu;
@@ -30,7 +28,7 @@ public class CLogin implements ActionListener {
         this.login.setLocationRelativeTo(null);
         this.login.setTitle("Login");
         this.login.setResizable(false);
-
+        
         this.login.pack();  //redimensión de contenedores
         this.login.setVisible(true);
     } //close iniciarLogin
@@ -63,7 +61,7 @@ public class CLogin implements ActionListener {
 
                 VMenu menu = new VMenu();
                 CMenu cmenu = new CMenu(menu);
-                cmenu.iniciarMenu();
+                cmenu.iniciarMenu(true);
                 this.login.dispose();
 
             } else {

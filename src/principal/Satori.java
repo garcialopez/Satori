@@ -2,6 +2,8 @@ package principal;
 
 import com.jtattoo.plaf.aero.AeroLookAndFeel;
 import controlador.CLogin;
+import controlador.bd.ConexionBD;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import vista.VLogin;
@@ -20,7 +22,7 @@ public class Satori {
         } catch (UnsupportedLookAndFeelException ex) {
             System.err.println("Error de LookAndFeel");
         }//cierra catch
-        
+       
         if (ConexionBD.conectarBD()) {
             VLogin login = new VLogin();
             CLogin cLogin = new CLogin(login);
