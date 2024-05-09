@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Academia;
+import modelo.Docente;
 import modelo.Laboratorio;
 
 public class Transacciones {
@@ -138,5 +139,46 @@ public class Transacciones {
   } //Cierra método actualizar laboratorio
 
     //----------------------------------------------------------------------------------
+      
+      
+    //----------------------------------------------------------------------------------EQUIPO 4
+      
+      public List<Object[]> seleccionarDoc(Docente docente){
+        List<Object[]> resultado = null;
+        //----------------------------------
+        if (ConexionBD.conectarBD()) {
+            try {
+                String procedimiento = "{CALL seleccionarDoc(?)}";
+                CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
+                st.setInt(1, docente.getIdEmpleado());
+                ResultSet rst = st.executeQuery();
+
+                int cantCol = rst.getMetaData().getColumnCount();
+                resultado = new ArrayList();
+
+                while(rst.next()){
+                    Object[] registro = new Object[cantCol];
+                    for (int i = 0; i < cantCol; i++) {
+                        registro[i] = rst.getObject( i + 1);
+                    }//cierra for
+                    resultado.add(registro);
+                } //cierra while
+
+                return resultado;
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
+                return resultado;
+            }//cierra catch
+        } //cierraif
+
+        //----------------------------------
+        return resultado;
+    }
+
+      
+    //----------------------------------------------------------------------------------
+
+      
+      
 
 }
