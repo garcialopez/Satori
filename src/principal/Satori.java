@@ -25,13 +25,6 @@ public class Satori {
         CLogin cLogin = new CLogin(login);
         cLogin.iniciarLogin();
 
-     //otro comentario
-        //tengo un cambio 2
-
-     //tengo un cambio 2 codadru
-
-     //end
-
     } // close main
 
 } // close class
