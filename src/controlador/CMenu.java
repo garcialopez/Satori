@@ -10,10 +10,6 @@ import vista.VMaterias;
 import vista.VMenu;
 import vista.VReservacion;
 
-/**
- *
- * @author adrian
- */
 public class CMenu implements ActionListener {
 
     VMenu menu;
@@ -32,15 +28,14 @@ public class CMenu implements ActionListener {
         this.menu.itemSalir.addActionListener(this);
     }
 
-    public void iniciarMenu() {
+    public void iniciarMenu(boolean privilegios) {
         this.menu.setLocationRelativeTo(null);
         this.menu.setTitle("Menú");
         this.menu.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.menu.pack();  //redimensión de contenedores
 
-        //bloqueo temporal
-        bloqueoTemporal();
-
+        this.menu.menuDepartamento.setVisible(privilegios);
+        
         this.menu.setVisible(true);
     }
 
@@ -84,11 +79,5 @@ public class CMenu implements ActionListener {
         }
 
     } //close actionPerformed
-
-    private void bloqueoTemporal() {
-        this.menu.menuAyuda.setEnabled(false);
-//        this.menu.itemHorario.setEnabled(false);
-//        this.menu.itemMaterias.setEnabled(false);
-    }
 
 } //close class
