@@ -4,10 +4,12 @@ import modelo.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Academia;
+import modelo.Laboratorio;
 
 public class Transacciones {
     //metodo para insertar un usuario
@@ -92,5 +94,49 @@ public class Transacciones {
         }
 
     } //close vaidarSesion
+    
+    //----------------------------------------------------------------------------------EQUIPO 3
+     public boolean insertarLaboratorio(Laboratorio laboratorio){
+      
+      if (ConexionBD.conectarBD()) {
+          
+          try {
+              String procedimiento1 = "{CALL insertarLaboratorio(?)}";
+              PreparedStatement st = ConexionBD.conexion.prepareCall(procedimiento1);
+                st.setString(1, laboratorio.getNombre());               
+                st.execute();
+                return true;
+              
+          } catch (SQLException e) {
+              System.err.println("Error: " + e.getMessage());
+                return false;
+          } //Cierra catch
+          
+      } //Cierra IF
+      return false; 
+  } //Cierra método insertar laboratorio
+     
+      public boolean actualizarLaboratorio(Laboratorio laboratorio){
+      
+      if (ConexionBD.conectarBD()) {
+          
+          try {
+              String procedimiento1 = "{CALL actualizarLaboratorio(?)}";
+              PreparedStatement st = ConexionBD.conexion.prepareCall(procedimiento1);
+                st.setInt(1,laboratorio.getIdLaboratorio());
+                st.setString(2, laboratorio.getNombre());               
+                st.execute();
+                return true;
+              
+          } catch (SQLException e) {
+              System.err.println("Error: " + e.getMessage());
+                return false;
+          } //Cierra catch
+          
+      } //Cierra IF
+      return false; 
+  } //Cierra método actualizar laboratorio
+
+    //----------------------------------------------------------------------------------
 
 }
