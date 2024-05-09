@@ -11,7 +11,7 @@ import vista.VLogin;
  * @author José Adrian García López
  */
 public class Satori {
-
+//cambio desde ramana origin main garcialopez
     public static void main(String[] args) {
         
         try {
@@ -24,7 +24,8 @@ public class Satori {
         VLogin login = new VLogin();
         CLogin cLogin = new CLogin(login);
         cLogin.iniciarLogin();
-           
+
+        
 
     } // close main
 
