@@ -9,10 +9,9 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Academia;
 import vista.VAcademia;
 
-/**
- *
- * @author adrian
- */
+
+//CAMBIO DE PRUEBAS
+
 public class CAcademia implements ActionListener {
 
     VAcademia vAcademia;
