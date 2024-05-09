@@ -21,9 +21,13 @@ public class Satori {
             System.err.println("Error de LookAndFeel");
         }//cierra catch
         
-        VLogin login = new VLogin();
-        CLogin cLogin = new CLogin(login);
-        cLogin.iniciarLogin();
+        if (ConexionBD.conectarBD()) {
+            VLogin login = new VLogin();
+            CLogin cLogin = new CLogin(login);
+            cLogin.iniciarLogin();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo conectar a la base de datos.\nContacte al administrador", "Error", JOptionPane.ERROR_MESSAGE);
+        }//cierra else
 
     } // close main
 
