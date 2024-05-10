@@ -26,6 +26,7 @@ public class CMenu implements ActionListener {
         this.menu.itemProfesores.addActionListener(this);
         this.menu.itemAcercaDe.addActionListener(this);
         this.menu.itemSalir.addActionListener(this);
+        this.menu.itemReservaciones.addActionListener(this);//agregado
     }
 
     public void iniciarMenu(boolean privilegios) {
