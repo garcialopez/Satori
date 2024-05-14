@@ -81,6 +81,7 @@ public class Transacciones {
         return resultado;
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------ EQUIPO HAU
     //COMIENZA HORARIO
     //metodo para insertar un usuario
     public boolean insertarHorario(Horario horario) {
@@ -158,8 +159,8 @@ public class Transacciones {
                 int cantCol = rst.getMetaData().getColumnCount();
                 resultado = new ArrayList();
 
-                while (rst.next()) { 
-                   
+                while (rst.next()) {
+
                     Object[] registro = new Object[cantCol];
                     for (int i = 0; i < cantCol; i++) {
                         registro[i] = rst.getObject(i + 1);
@@ -178,6 +179,7 @@ public class Transacciones {
         return resultado;
     }
 //FINALIZA HORARIO
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     public boolean validarSesion(Usuario usuario) {
         try {
