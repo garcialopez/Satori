@@ -33,9 +33,19 @@ public class VReservacion extends javax.swing.JDialog {
         txtClave = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        boxAcademia = new javax.swing.JComboBox<>();
+        boxLaboratorio = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        txtNumDocentes = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        boxDia = new javax.swing.JComboBox<>();
+        btnBuscarDocente = new javax.swing.JButton();
+        lblDocente = new javax.swing.JLabel();
+        boxHorario = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        txtClaveMateria = new javax.swing.JTextField();
+        btnBuscarMateria = new javax.swing.JButton();
+        lblMateria = new javax.swing.JLabel();
         panelVertDerecho = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -60,7 +70,7 @@ public class VReservacion extends javax.swing.JDialog {
 
         lblTitulo.setFont(new java.awt.Font("Open Sans", 1, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(98, 17, 50));
-        lblTitulo.setText("OPERACIONES PARA LAS MATERIAS");
+        lblTitulo.setText("OPERACIONES PARA LAS RESERVACION");
         panelEncabezado.add(lblTitulo);
 
         lblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -86,7 +96,7 @@ public class VReservacion extends javax.swing.JDialog {
 
         jLabel8.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(98, 17, 50));
-        jLabel8.setText("Clave de la materia:");
+        jLabel8.setText("Clave de la Reservacion:");
 
         btnBuscar.setFont(new java.awt.Font("Open Sans", 0, 16)); // NOI18N
         btnBuscar.setText("Buscar");
@@ -100,9 +110,9 @@ public class VReservacion extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBusquedaLayout.createSequentialGroup()
-                        .addGap(0, 74, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(lblInfo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelBusquedaLayout.createSequentialGroup()
                         .addComponent(jLabel8)
@@ -158,10 +168,11 @@ public class VReservacion extends javax.swing.JDialog {
         panelOPeracionesLayout.setVerticalGroup(
             panelOPeracionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panelOPeracionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addGroup(panelOPeracionesLayout.createSequentialGroup()
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jSeparator1)
+            .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         panelDetalles.setBackground(new java.awt.Color(255, 255, 255));
@@ -169,9 +180,14 @@ public class VReservacion extends javax.swing.JDialog {
 
         jLabel10.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(98, 17, 50));
-        jLabel10.setText("Clave");
+        jLabel10.setText("Clave ");
 
         txtClave.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        txtClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveActionPerformed(evt);
+            }
+        });
 
         btnNuevo.setFont(new java.awt.Font("Open Sans", 1, 12)); // NOI18N
         btnNuevo.setText("Nuevo");
@@ -179,16 +195,52 @@ public class VReservacion extends javax.swing.JDialog {
 
         jLabel11.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(98, 17, 50));
-        jLabel11.setText("Nombre");
-
-        txtNombre.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        jLabel11.setText("Núm. Docente");
 
         jLabel13.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(98, 17, 50));
-        jLabel13.setText("Academia");
+        jLabel13.setText("Laboratorio");
 
-        boxAcademia.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
-        boxAcademia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxLaboratorio.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        boxLaboratorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel12.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(98, 17, 50));
+        jLabel12.setText("Día");
+
+        txtNumDocentes.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+
+        jLabel15.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(98, 17, 50));
+        jLabel15.setText("Horario");
+
+        boxDia.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        boxDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnBuscarDocente.setFont(new java.awt.Font("Open Sans", 1, 12)); // NOI18N
+        btnBuscarDocente.setText("Búscar");
+        btnBuscarDocente.setFocusPainted(false);
+
+        lblDocente.setFont(new java.awt.Font("Open Sans", 2, 11)); // NOI18N
+        lblDocente.setForeground(new java.awt.Color(98, 17, 50));
+        lblDocente.setText("i1 - nombre docente apellidos");
+
+        boxHorario.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        boxHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel14.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(98, 17, 50));
+        jLabel14.setText("Clave Materia");
+
+        txtClaveMateria.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
+
+        btnBuscarMateria.setFont(new java.awt.Font("Open Sans", 1, 12)); // NOI18N
+        btnBuscarMateria.setText("Búscar");
+        btnBuscarMateria.setFocusPainted(false);
+
+        lblMateria.setFont(new java.awt.Font("Open Sans", 2, 11)); // NOI18N
+        lblMateria.setForeground(new java.awt.Color(98, 17, 50));
+        lblMateria.setText("2003j - materia");
 
         javax.swing.GroupLayout panelDetallesLayout = new javax.swing.GroupLayout(panelDetalles);
         panelDetalles.setLayout(panelDetallesLayout);
@@ -197,39 +249,84 @@ public class VReservacion extends javax.swing.JDialog {
             .addGroup(panelDetallesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDetallesLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(boxDia, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel15)
+                        .addGap(18, 18, 18)
+                        .addComponent(boxHorario, 0, 160, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDetallesLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnNuevo))
                     .addGroup(panelDetallesLayout.createSequentialGroup()
                         .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombre)
-                            .addComponent(boxAcademia, 0, 300, Short.MAX_VALUE)
-                            .addComponent(txtClave))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelDetallesLayout.createSequentialGroup()
+                                    .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelDetallesLayout.createSequentialGroup()
+                                            .addComponent(jLabel10)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panelDetallesLayout.createSequentialGroup()
+                                            .addComponent(jLabel11)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtNumDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnBuscarDocente)))
+                                    .addGap(72, 72, 72)))
+                            .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelDetallesLayout.createSequentialGroup()
+                                    .addComponent(jLabel14)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtClaveMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnBuscarMateria)
+                                    .addGap(72, 72, 72))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panelDetallesLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(boxLaboratorio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelDetallesLayout.setVerticalGroup(
             panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDetallesLayout.createSequentialGroup()
                 .addComponent(btnNuevo)
-                .addGap(32, 32, 32)
+                .addGap(4, 4, 4)
                 .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(btnBuscarDocente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblDocente)
+                .addGap(18, 18, 18)
+                .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel12)
+                        .addComponent(boxDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel15))
+                    .addComponent(boxHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtClaveMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(btnBuscarMateria))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMateria)
                 .addGap(18, 18, 18)
                 .addGroup(panelDetallesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(boxAcademia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 150, Short.MAX_VALUE))
+                    .addComponent(boxLaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62))
         );
 
         javax.swing.GroupLayout panelVertIzquierdoLayout = new javax.swing.GroupLayout(panelVertIzquierdo);
@@ -289,7 +386,7 @@ public class VReservacion extends javax.swing.JDialog {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(81, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -301,7 +398,7 @@ public class VReservacion extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -318,7 +415,7 @@ public class VReservacion extends javax.swing.JDialog {
             panelVertDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelVertDerechoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -369,11 +466,19 @@ public class VReservacion extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtClaveActionPerformed
       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JComboBox<String> boxAcademia;
+    public javax.swing.JComboBox<String> boxDia;
+    public javax.swing.JComboBox<String> boxHorario;
+    public javax.swing.JComboBox<String> boxLaboratorio;
     public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnBuscarDocente;
+    public javax.swing.JButton btnBuscarMateria;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnInsertar;
     public javax.swing.JButton btnModificar;
@@ -382,14 +487,19 @@ public class VReservacion extends javax.swing.JDialog {
     private javax.swing.JMenuItem itemSalir;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblDocente;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblMateria;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JMenu menuArchivo;
     private javax.swing.JMenu menuAyuda;
@@ -405,6 +515,7 @@ public class VReservacion extends javax.swing.JDialog {
     public javax.swing.JTable tblRegistros;
     public javax.swing.JTextField txtBuscar;
     public javax.swing.JTextField txtClave;
-    public javax.swing.JTextField txtNombre;
+    public javax.swing.JTextField txtClaveMateria;
+    public javax.swing.JTextField txtNumDocentes;
     // End of variables declaration//GEN-END:variables
 }

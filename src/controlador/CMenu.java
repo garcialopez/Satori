@@ -9,6 +9,8 @@ import vista.VLaboratorios;
 import vista.VMaterias;
 import vista.VMenu;
 import vista.VReservacion;
+import javax.swing.JPanel;
+import java.awt.Component;
 
 public class CMenu implements ActionListener {
 
@@ -25,8 +27,9 @@ public class CMenu implements ActionListener {
         this.menu.itemMaterias.addActionListener(this);
         this.menu.itemProfesores.addActionListener(this);
         this.menu.itemAcercaDe.addActionListener(this);
-        this.menu.itemSalir.addActionListener(this);
+        this.menu.itemSalir.addActionListener(this);    
         this.menu.itemReservaciones.addActionListener(this);//agregado
+        this.menu.checkNA.addActionListener(this);//agregado
     }
 
     public void iniciarMenu(boolean privilegios) {
@@ -77,8 +80,57 @@ public class CMenu implements ActionListener {
             CReservacion cReservacion = new CReservacion(dialog);
             cReservacion.iniciarReservacion();
             
+        } else if (e.getSource() == this.menu.checkSolicitar){
+            boolean check = this.menu.checkSolicitar.isSelected();
+
+            if (check) {
+                bloquearPanelAsistencia();
+            } else {
+                bloquearPanelNoAsistencia();                
+            }
+
         }
 
     } //close actionPerformed
+
+    //metodo para bloquear todos los componentes del panel asistente
+    private void bloquearPanelAsistencia() {
+        bloquearComponents(this.menu.jPanel5,false);
+        bloquearComponents(this.menu.jPanel7,false);
+        bloquearComponents(this.menu.jPanel8,false);
+        bloquearComponents(this.menu.jPanel9,false);
+        bloquearComponents(this.menu.jPanel10,false);
+
+        bloquearComponents(this.menu.panelNoAsignacion,true);
+        bloquearComponents(this.menu.jPanel11,true);
+        bloquearComponents(this.menu.jPanel12,true);
+        bloquearComponents(this.menu.jPanel13,true);
+        bloquearComponents(this.menu.jPanel15,true);
+
+        
+    }
+
+    //metodo para bloquear todos los componentes del panel no asistente
+    private void bloquearPanelNoAsistencia() {
+        bloquearComponents(this.menu.jPanel5,true);
+        bloquearComponents(this.menu.jPanel7,true);
+        bloquearComponents(this.menu.jPanel8,true);
+        bloquearComponents(this.menu.jPanel9,true);
+        bloquearComponents(this.menu.jPanel10,true);
+
+        bloquearComponents(this.menu.panelNoAsignacion,false);
+        bloquearComponents(this.menu.jPanel11,false);
+        bloquearComponents(this.menu.jPanel12,false);
+        bloquearComponents(this.menu.jPanel13,false);
+        bloquearComponents(this.menu.jPanel15,false);
+
+        
+    }
+
+    private void bloquearComponents(JPanel panel, boolean bloquear) {
+        for (Component component : panel.getComponents()) {
+            component.setEnabled(bloquear);
+        }
+    }
 
 } //close class
