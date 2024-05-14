@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modelo.Academia;
+import modelo.Horario;
 
 public class Transacciones {
+
     //metodo para insertar un usuario
     public boolean insertarAcademia(Academia academia) {
         if (ConexionBD.conectarBD()) {
@@ -47,7 +49,7 @@ public class Transacciones {
         return false;
     }//cierra metodo insertar Academia
 
-    public List<Object[]> seleccionar(Academia academia){
+    public List<Object[]> seleccionar(Academia academia) {
         List<Object[]> resultado = null;
         //----------------------------------
         if (ConexionBD.conectarBD()) {
@@ -60,10 +62,10 @@ public class Transacciones {
                 int cantCol = rst.getMetaData().getColumnCount();
                 resultado = new ArrayList();
 
-                while(rst.next()){
+                while (rst.next()) {
                     Object[] registro = new Object[cantCol];
                     for (int i = 0; i < cantCol; i++) {
-                        registro[i] = rst.getObject( i + 1);
+                        registro[i] = rst.getObject(i + 1);
                     }//cierra for
                     resultado.add(registro);
                 } //cierra while
@@ -78,6 +80,104 @@ public class Transacciones {
         //----------------------------------
         return resultado;
     }
+
+    //COMIENZA HORARIO
+    //metodo para insertar un usuario
+    public boolean insertarHorario(Horario horario) {
+        if (ConexionBD.conectarBD()) {
+            try {
+                String procedimiento = "{CALL insertarHorario(?,?)}";
+                CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
+                st.setString(1, horario.getDesde());
+                st.setString(2, horario.getHasta());
+                st.execute();
+
+                return true;
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
+                return false;
+            }//cierra catch
+        } //cierraif
+        return false;
+    }//cierra metodo insertarHorario
+
+    public boolean actualizarHorario(Horario horario) {
+        if (ConexionBD.conectarBD()) {
+            try {
+                String procedimiento = "{CALL actualizarHorario(?,?,?)}";
+                CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
+
+                st.setInt(1, horario.getIdHorario());
+                st.setString(2, horario.getDesde());
+                st.setString(3, horario.getHasta());
+
+                st.execute();
+                return true;
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
+                return false;
+            }//cierra catch
+        } //cierraif
+        return false;
+    }//cierra metodo actualizarHorario
+
+    public boolean eliminarHorario(Horario horario) {
+
+        if (ConexionBD.conectarBD()) {
+
+            try {
+
+                String procedimiento = "{CALL eliminarHorario(?)}";
+                CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
+                st.setInt(1, horario.getIdHorario());
+
+                st.execute();
+
+                return true;
+
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
+                return false;
+            }//cierra catch
+
+        }//cierra if
+        return false;
+
+    }//cierra metodo eliminarHorario
+
+    public List<Object[]> seleccionarHorario(Horario horario) {
+        List<Object[]> resultado = null;
+        //----------------------------------
+        if (ConexionBD.conectarBD()) {
+            try {
+                String procedimiento = "{CALL seleccionarHorario(?)}";
+                CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
+                st.setInt(1, horario.getIdHorario());
+                ResultSet rst = st.executeQuery();
+
+                int cantCol = rst.getMetaData().getColumnCount();
+                resultado = new ArrayList();
+
+                while (rst.next()) { 
+                   
+                    Object[] registro = new Object[cantCol];
+                    for (int i = 0; i < cantCol; i++) {
+                        registro[i] = rst.getObject(i + 1);
+                    }//cierra for
+                    resultado.add(registro);
+                } //cierra while
+
+                return resultado;
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
+                return resultado;
+            }//cierra catch
+        } //cierraif
+
+        //----------------------------------
+        return resultado;
+    }
+//FINALIZA HORARIO
 
     public boolean validarSesion(Usuario usuario) {
         try {
