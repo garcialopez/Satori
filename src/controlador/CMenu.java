@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import vista.VAcademia;
 import vista.VDocentes;
+import vista.VHorario;
 import vista.VLaboratorios;
 import vista.VMaterias;
 import vista.VMenu;
@@ -52,7 +53,9 @@ public class CMenu implements ActionListener {
             cAcademia.iniciarAcademia();
 
         } else if (e.getSource() == this.menu.itemHorario) {
-            //hacer
+             VHorario dialog = new VHorario(this.menu, true);
+           CHorario cHorario = new CHorario(dialog);
+           cHorario.iniciarHorario();
 
         } else if (e.getSource() == this.menu.itemLaboratorios) {
             VLaboratorios dialog = new VLaboratorios(this.menu, true);
