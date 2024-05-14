@@ -18,6 +18,7 @@ import modelo.Horario;
 
 public class Transacciones {
 
+       //------------------------------------------------------------------------------------------------------------------------------------------ EQUIPO HAU
     //metodo para insertar un usuario
     public boolean insertarAcademia(Academia academia) {
         if (ConexionBD.conectarBD()) {
@@ -54,6 +55,22 @@ public class Transacciones {
         } //cierraif
         return false;
     }//cierra metodo insertar Academia
+    
+    public boolean eliminarAcademia(Academia academia){
+        if(ConexionBD.conectarBD()){
+            try {
+                String procedimientos = "{call eliminarAcademia(?)}";
+                CallableStatement st = ConexionBD.conexion.prepareCall(procedimientos);
+                st.setInt(1, academia.getIdAcademia());               
+                st.execute();
+                return true;
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
+                return false;
+            }//cierra catch
+        }
+        return false;
+    }//cierra metodo eliminar academia
 
     public List<Object[]> seleccionar(Academia academia) {
         List<Object[]> resultado = null;
@@ -87,7 +104,7 @@ public class Transacciones {
         return resultado;
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------ EQUIPO HAU
+ 
     //COMIENZA HORARIO
     //metodo para insertar un usuario
     public boolean insertarHorario(Horario horario) {
