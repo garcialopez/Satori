@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Academia;
 import modelo.Docente;
@@ -20,6 +19,7 @@ public class CDocentes implements ActionListener {
     VDocentes vDocentes;
     Docente docente;
 
+
     DefaultTableModel modelo;
 
     List<Object[]> academias;
@@ -33,6 +33,8 @@ public class CDocentes implements ActionListener {
         this.vDocentes.btnInsertar.addActionListener(this);
         this.vDocentes.btnModificar.addActionListener(this);
         this.vDocentes.btnEliminar.addActionListener(this);
+
+
 
         academias = new ArrayList();
 
@@ -68,6 +70,7 @@ public class CDocentes implements ActionListener {
 
     private void limpiarCampos() {
 
+
         this.vDocentes.txtNumeroEmpleado.setText("");
         this.vDocentes.txtNombres.setText("");
         this.vDocentes.txtApellidoPaterno.setText("");
@@ -98,13 +101,14 @@ public class CDocentes implements ActionListener {
 
         Transacciones t = new Transacciones();
 
-        if (t.insertarDocente(docente)) {
-            JOptionPane.showMessageDialog(null, "Insertado correctamente",
-                    "Exitoso", JOptionPane.DEFAULT_OPTION);
-        } else {
-            JOptionPane.showMessageDialog(null, "No se inserto",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+
+
+//        if( t.insertarDocente(docente) ){
+//            //INSERTO
+//        } else {
+//            //NO INSERTO
+//        }
+
 
     }// cierrametodo insertar
 
@@ -119,7 +123,7 @@ public class CDocentes implements ActionListener {
 
             if (idModelo == idBuscar) {
 
-                this.vDocentes.txtNumeroEmpleado.setText(idModelo + "");
+                this.vDocentes.txtNumeroEmpleado.setText(idModelo+"");
                 this.vDocentes.txtNombres.setText(modelo.getValueAt(i, 1).toString());
                 this.vDocentes.txtApellidoPaterno.setText(modelo.getValueAt(i, 2).toString());
                 this.vDocentes.txtApellidoMaterno.setText(modelo.getValueAt(i, 3).toString());
@@ -129,26 +133,12 @@ public class CDocentes implements ActionListener {
         }
     }
 
-    private void borrar() {
-        this.docente = new Docente();
+    private void borrar(){
 
-        Transacciones t = new Transacciones();
+        this.vDocentes.tblRegistros.setModel(this.modelo);
+    }
 
-        String idTexto = this.vDocentes.txtBuscar.getText();
-        int id = Integer.parseInt(idTexto);
-
-        //asignamos al objeto   	 
-        this.docente.setIdEmpleado(id);
-
-        if (t.borrarDocente(docente)) {
-            JOptionPane.showMessageDialog(null, "Eliminado", "Existoso", JOptionPane.DEFAULT_OPTION);
-        } else {
-            JOptionPane.showMessageDialog(null, "No se elimino", "Error de actualización", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }//cierra borrar
-
-    private void modificar() {
+    private void modificar(){
         this.docente = new Docente();
 
         //recogemos los datos
@@ -164,18 +154,9 @@ public class CDocentes implements ActionListener {
         this.docente.setIdEmpleado(id);
         this.docente.setNombres(nombre);
         this.docente.setApellidos(apellidoPaterno);
-//    	this.docente.setAcademia();
-//    	this.docente.setApellidoMaterno(apellidoMaterno);
+//        this.docente.setApellidoMaterno(apellidoMaterno);
+//        this.docente.setAcademia(academia);
 
-        Transacciones t = new Transacciones();
-
-        if (t.actualizarDocente(docente)) {
-            JOptionPane.showMessageDialog(null, "Actualizado correctamente",
-                    "Exitoso", JOptionPane.DEFAULT_OPTION);
-        } else {
-            JOptionPane.showMessageDialog(null, "No se actualizo",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
 
         this.vDocentes.tblRegistros.setModel(this.modelo);
     }
@@ -198,23 +179,18 @@ public class CDocentes implements ActionListener {
 
         // Agregamos unos datos de prueba
         // Agregar filas al modelo
-        Transacciones t = new Transacciones();
-        this.docente = new Docente();
-        List<Object[]> resultados = t.seleccionarDoc(this.docente);
 
-        for (int i = 0; i < resultados.size(); i++) {
-            this.modelo.addRow(resultados.get(i));
-        } //cierra for
+
         //asinamos el modelo a la tabla
         this.vDocentes.tblRegistros.setModel(this.modelo);
     } // termina iniciarTabla
 
-    private void iniciarBox() {
+    private void iniciarBox(){
         this.vDocentes.boxAcademia.removeAllItems();
         Transacciones t = new Transacciones();
         academias = t.seleccionar(new Academia());
 
-        for (int i = 0; i < academias.size(); i++) {
+        for(int i = 0; i < academias.size(); i++){
             Object[] registro = academias.get(i);
             this.vDocentes.boxAcademia.addItem(registro[1].toString());
         }//cierra for

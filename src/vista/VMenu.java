@@ -78,6 +78,7 @@ public class VMenu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea3 = new javax.swing.JTextArea();
         btnModificar1 = new javax.swing.JButton();
+        lblDocente6 = new javax.swing.JLabel();
         lblDocente7 = new javax.swing.JLabel();
         panelFooter = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -646,8 +647,11 @@ public class VMenu extends javax.swing.JFrame {
         btnModificar1.setText("Solicitar");
         btnModificar1.setFocusPainted(false);
 
+        lblDocente6.setFont(new java.awt.Font("Open Sans", 2, 11)); // NOI18N
+        lblDocente6.setText("de autorizar la entrada.");
+
         lblDocente7.setFont(new java.awt.Font("Open Sans", 2, 11)); // NOI18N
-        lblDocente7.setText("El personal encargado de laboratorio de autorizar la entrada.");
+        lblDocente7.setText("El personal encargado de laboratorio");
 
         javax.swing.GroupLayout panelNoAsignacionLayout = new javax.swing.GroupLayout(panelNoAsignacion);
         panelNoAsignacion.setLayout(panelNoAsignacionLayout);
@@ -681,6 +685,9 @@ public class VMenu extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(panelNoAsignacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnModificar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNoAsignacionLayout.createSequentialGroup()
+                                                .addComponent(lblDocente6, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(8, 8, 8))
                                             .addComponent(lblDocente7, javax.swing.GroupLayout.Alignment.TRAILING))))))
                         .addContainerGap())))
         );
@@ -712,7 +719,8 @@ public class VMenu extends javax.swing.JFrame {
                                 .addComponent(btnModificar1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblDocente7)
-                                .addGap(0, 19, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblDocente6)))))
                 .addContainerGap())
         );
 
@@ -886,6 +894,7 @@ public class VMenu extends javax.swing.JFrame {
     private javax.swing.JLabel lblDocente3;
     public javax.swing.JLabel lblDocente4;
     public javax.swing.JLabel lblDocente5;
+    public javax.swing.JLabel lblDocente6;
     public javax.swing.JLabel lblDocente7;
     public javax.swing.JLabel lblFecha;
     public javax.swing.JMenu menuArchivo;
