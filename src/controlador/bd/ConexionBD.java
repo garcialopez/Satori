@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 public class ConexionBD {
     //Declaramos las variables necesarias para la conexion
     private static String USER = "root2"; //usuario de la base de datos
-    private static String PASS = "Angelito3456"; //contraseña de la base de datos
+    private static String PASS = "123456789"; //contraseña de la base de datos
     private static String DB = "bd_lab";//nombre de la base de datos
     private static String PORT = "3306"; //puerto de la base de datos
     private static String HOST = "localhost"; //host de la base de datos

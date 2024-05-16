@@ -3,6 +3,8 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 import vista.VAcademia;
 import vista.VDocentes;
 import vista.VHorario;
@@ -16,6 +18,8 @@ import java.awt.Component;
 public class CMenu implements ActionListener {
 
     VMenu menu;
+    String dia;
+    String fecha;
 
     public CMenu(VMenu menu) {
 
@@ -35,6 +39,10 @@ public class CMenu implements ActionListener {
 
     public void iniciarMenu(boolean privilegios) {
         this.menu.setLocationRelativeTo(null);
+        //mostrar fecha actual
+        mostrarFecha(this.menu.lblFecha);
+
+
         this.menu.setTitle("Menú");
         this.menu.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.menu.pack();  //redimensión de contenedores
@@ -136,6 +144,29 @@ public class CMenu implements ActionListener {
         }
     }
 
-    //comentario
+    /*
+     * Metodo para mostrar la fecha actual
+     * @param labelFecha
+     */
+    private void mostrarFecha(JLabel labelFecha) {
+        //obtenemos fecha actual
+        java.util.Date fechaDia = new java.util.Date();
+
+        //guardamos dia de la semana actual en la variable dia
+        java.text.SimpleDateFormat formatoDia = new java.text.SimpleDateFormat("EEEE");
+        dia = formatoDia.format(fechaDia);
+
+        //guardamos fecha actual en la variable fecha
+        java.text.SimpleDateFormat formatoFecha = new java.text.SimpleDateFormat("yyyy/MM/dd");
+        fecha = formatoFecha.format(fechaDia);
+
+       
+        //mostramos fecha en el label
+        labelFecha.setText(dia + ", " + fecha);        
+
+
+
+    } //close mostrarFecha
+
 
 } //close class
