@@ -113,11 +113,11 @@ public class CMaterias implements ActionListener {
         this.materias.setAcademia(idAcademia);
 
         Transacciones t = new Transacciones();
-        if (t.insertarMaterias(materias)) {
-            JOptionPane.showMessageDialog(null, "Materia insertada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al insertar Materia", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+//        if (t.insertarMaterias(materias)) {
+//            JOptionPane.showMessageDialog(null, "Materia insertada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Error al insertar Materia", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
 
     }
 
@@ -157,13 +157,13 @@ public class CMaterias implements ActionListener {
 
         Transacciones t = new Transacciones();
 
-        if (t.eliminarMateria(materias)) {
-            JOptionPane.showMessageDialog(null, "Eliminado",
-                    "Exitoso", JOptionPane.DEFAULT_OPTION);
-        } else {
-            JOptionPane.showMessageDialog(null, "No se eliminó",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+//        if (t.eliminarMateria(materias)) {
+//            JOptionPane.showMessageDialog(null, "Eliminado",
+//                    "Exitoso", JOptionPane.DEFAULT_OPTION);
+//        } else {
+//            JOptionPane.showMessageDialog(null, "No se eliminó",
+//                    "Error", JOptionPane.ERROR_MESSAGE);
+//        }
 
     }
 
@@ -187,11 +187,11 @@ public class CMaterias implements ActionListener {
         this.materias.setAcademia(idAcademia);
 
         Transacciones t = new Transacciones();
-        if (t.actualizarMateria(materias)) {
-            JOptionPane.showMessageDialog(null, "Materia actualizada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al actualizar Materia", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+//        if (t.actualizarMateria(materias)) {
+//            JOptionPane.showMessageDialog(null, "Materia actualizada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Error al actualizar Materia", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
 
     }
 
@@ -212,11 +212,11 @@ public class CMaterias implements ActionListener {
 
         this.materias = new Materia();
         Transacciones t = new Transacciones();
-        List<Object[]> resultados = t.seleccionar(this.materias);
+ //       List<Object[]> resultados = t.seleccionar(this.materias);
 
-        for (int i = 0; i < resultados.size(); i++) {
-            this.modelo.addRow(resultados.get(i));
-        }
+//        for (int i = 0; i < resultados.size(); i++) {
+//            this.modelo.addRow(resultados.get(i));
+//        }
 
         //asinamos el modelo a la tabla
         this.vMaterias.tblRegistros.setModel(this.modelo);

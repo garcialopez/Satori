@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ahcer/OneDrive/Documentos/GitHub/Satori/src/controlador/bd/Transacciones.java</file>
-            <file>file:/C:/Users/ahcer/OneDrive/Documentos/GitHub/Satori/src/modelo/Horario.java</file>
-            <file>file:/C:/Users/ahcer/OneDrive/Documentos/GitHub/Satori/src/controlador/CMenu.java</file>
-            <file>file:/C:/Users/ahcer/OneDrive/Documentos/GitHub/Satori/src/vista/VHorario.java</file>
-            <file>file:/C:/Users/ahcer/OneDrive/Documentos/GitHub/Satori/src/principal/Satori.java</file>
-            <file>file:/C:/Users/ahcer/OneDrive/Documentos/GitHub/Satori/src/controlador/CHorario.java</file>
+            <file>file:/C:/Users/admin/Documents/Github/Satori/src/controlador/bd/ConexionBD.java</file>
+            <file>file:/C:/Users/admin/Documents/Github/Satori/src/controlador/CDocentes.java</file>
+            <file>file:/C:/Users/admin/Documents/Github/Satori/src/controlador/CLaboratorios.java</file>
+            <file>file:/C:/Users/admin/Documents/Github/Satori/src/controlador/CLogin.java</file>
+            <file>file:/C:/Users/admin/Documents/Github/Satori/src/controlador/bd/Transacciones.java</file>
+            <file>file:/C:/Users/admin/Documents/Github/Satori/src/controlador/CMaterias.java</file>
+            <file>file:/C:/Users/admin/Documents/Github/Satori/src/vista/VMenu.java</file>
+            <file>file:/C:/Users/admin/Documents/Github/Satori/src/controlador/CAcademia.java</file>
+            <file>file:/C:/Users/admin/Documents/Github/Satori/src/principal/Satori.java</file>
         </group>
     </open-files>
 </project-private>
