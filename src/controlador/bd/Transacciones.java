@@ -14,12 +14,9 @@ import modelo.Docente;
 import modelo.Laboratorio;
 
 import modelo.Horario;
-import modelo.Materia;
-
 
 public class Transacciones {
 
-    //---------------------------------------------------------------------- EQUIPO HAU
     //metodo para insertar un usuario
     public boolean insertarAcademia(Academia academia) {
         if (ConexionBD.conectarBD()) {
@@ -56,22 +53,6 @@ public class Transacciones {
         } //cierraif
         return false;
     }//cierra metodo insertar Academia
-    
-    public boolean eliminarAcademia(Academia academia){
-        if(ConexionBD.conectarBD()){
-            try {
-                String procedimientos = "{call eliminarAcademia(?)}";
-                CallableStatement st = ConexionBD.conexion.prepareCall(procedimientos);
-                st.setInt(1, academia.getIdAcademia());               
-                st.execute();
-                return true;
-            } catch (SQLException e) {
-                System.err.println("Error: " + e.getMessage());
-                return false;
-            }//cierra catch
-        }
-        return false;
-    }//cierra metodo eliminar academia
 
     public List<Object[]> seleccionar(Academia academia) {
         List<Object[]> resultado = null;
@@ -105,7 +86,7 @@ public class Transacciones {
         return resultado;
     }
 
- 
+    //------------------------------------------------------------------------------------------------------------------------------------------ EQUIPO HAU
     //COMIENZA HORARIO
     //metodo para insertar un usuario
     public boolean insertarHorario(Horario horario) {
@@ -203,7 +184,7 @@ public class Transacciones {
         return resultado;
     }
 //FINALIZA HORARIO
-    //--------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     public boolean validarSesion(Usuario usuario) {
         try {
@@ -218,55 +199,84 @@ public class Transacciones {
         }
 
     } //close vaidarSesion
-    
+
     //----------------------------------------------------------------------------------EQUIPO 3
-     public boolean insertarLaboratorio(Laboratorio laboratorio){
-      
-      if (ConexionBD.conectarBD()) {
-          
-          try {
-              String procedimiento1 = "{CALL insertarLaboratorio(?)}";
-              PreparedStatement st = ConexionBD.conexion.prepareCall(procedimiento1);
-                st.setString(1, laboratorio.getNombre());               
+    public boolean insertarLab(Laboratorio laboratorio) {
+
+        if (ConexionBD.conectarBD()) {
+
+            try {
+                String procedimiento = "{CALL insertarLab(?)}";
+                PreparedStatement st = ConexionBD.conexion.prepareCall(procedimiento);
+                st.setString(1, laboratorio.getNombre());
                 st.execute();
                 return true;
-              
-          } catch (SQLException e) {
-              System.err.println("Error: " + e.getMessage());
+
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
                 return false;
-          } //Cierra catch
-          
-      } //Cierra IF
-      return false; 
-  } //Cierra método insertar laboratorio
-     
-      public boolean actualizarLaboratorio(Laboratorio laboratorio){
-      
-      if (ConexionBD.conectarBD()) {
-          
-          try {
-              String procedimiento1 = "{CALL actualizarLaboratorio(?)}";
-              PreparedStatement st = ConexionBD.conexion.prepareCall(procedimiento1);
-                st.setInt(1,laboratorio.getIdLaboratorio());
-                st.setString(2, laboratorio.getNombre());               
+            } //Cierra catch
+
+        } //Cierra IF
+        return false;
+    } //Cierra método insertar laboratorio
+
+    public boolean actualizarLab(Laboratorio laboratorio) {
+
+        if (ConexionBD.conectarBD()) {
+
+            try {
+                String procedimiento1 = "{CALL actualizarLab(?,?)}";
+                PreparedStatement st = ConexionBD.conexion.prepareCall(procedimiento1);
+                st.setInt(1, laboratorio.getIdLaboratorio());
+                st.setString(2, laboratorio.getNombre());
                 st.execute();
                 return true;
-              
-          } catch (SQLException e) {
-              System.err.println("Error: " + e.getMessage());
+
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
                 return false;
-          } //Cierra catch
-          
-      } //Cierra IF
-      return false; 
-  } //Cierra método actualizar laboratorio
+            } //Cierra catch
+
+        } //Cierra IF
+        return false;
+    } //Cierra método actualizar laboratorio
+
+    public List<Object[]> seleccionarLab(Laboratorio laboratorio) {
+        List<Object[]> resultado = null;
+        //----------------------------------
+        if (ConexionBD.conectarBD()) {
+            try {
+                String procedimiento = "{CALL seleccionarLab(?)}";
+                CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
+                st.setInt(1, laboratorio.getIdLaboratorio());
+                ResultSet rst = st.executeQuery();
+
+                int cantCol = rst.getMetaData().getColumnCount();
+                resultado = new ArrayList();
+
+                while (rst.next()) {
+                    Object[] registro = new Object[cantCol];
+                    for (int i = 0; i < cantCol; i++) {
+                        registro[i] = rst.getObject(i + 1);
+                    }//cierra for
+                    resultado.add(registro);
+                } //cierra while
+
+                return resultado;
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
+                return resultado;
+            }//cierra catch
+        } //cierraif
+
+        //----------------------------------
+        return resultado;
+    }
 
     //----------------------------------------------------------------------------------
-      
-      
     //----------------------------------------------------------------------------------EQUIPO 4
-      
-      public List<Object[]> seleccionarDoc(Docente docente){
+    public List<Object[]> seleccionarDoc(Docente docente) {
         List<Object[]> resultado = null;
         //----------------------------------
         if (ConexionBD.conectarBD()) {
@@ -279,10 +289,10 @@ public class Transacciones {
                 int cantCol = rst.getMetaData().getColumnCount();
                 resultado = new ArrayList();
 
-                while(rst.next()){
+                while (rst.next()) {
                     Object[] registro = new Object[cantCol];
                     for (int i = 0; i < cantCol; i++) {
-                        registro[i] = rst.getObject( i + 1);
+                        registro[i] = rst.getObject(i + 1);
                     }//cierra for
                     resultado.add(registro);
                 } //cierra while
@@ -298,97 +308,66 @@ public class Transacciones {
         return resultado;
     }
 
-    //----------------------------------------------------------------------------------
-
-    //----------------------------------------------------------------------------------EQUIPO J.ALBETO
-      public boolean insertarMaterias(Materia materia){
-
-    if(ConexionBD.conectarBD()){
-        try {
-            String procedimiento = "{CALL insertarMaterias(?, ?, ?)}";
-            CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
-
-            st.setString(1, materia.getClave());
-            st.setString(2, materia.getNombre());
-            st.setInt(3, materia.getAcademia());
-            st.execute();
-            return true;
-        } catch (SQLException e) {
-             System.err.println("Error: " + e.getMessage());
-              return false;
-        }
-    }
-    return false;
-}// cierra método insertarLaboratorio
-      public boolean actualizarMateria(Materia materia){
-
-    if(ConexionBD.conectarBD()){
-        try {
-            String procedimiento = "{CALL actualizarMateria(?,?,?,?)}";
-            CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
-            st.setInt(1, materia.getIdMateria());
-            st.setString(2, materia.getClave());
-            st.setString(3, materia.getNombre());
-            st.setInt(4, materia.getAcademia());
-            st.execute();
-            return true;
-        } catch (SQLException e) {
-             System.err.println("Error: " + e.getMessage());
-              return false;
-        }
-    }
-    return false;
-      }   
-    public boolean eliminarMateria (Materia materia){
-
-    if(ConexionBD.conectarBD()){
-        try {
-            String procedimiento = "{CALL eliminarMateria(?)}";
-            CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
-            st.setInt(1, materia.getIdMateria());
-
-            st.execute();
-            return true;
-        } catch (SQLException e) {
-             System.err.println("Error: " + e.getMessage());
-              return false;
-        }
-    }
-    return false;
-}// cierra método insertarLaboratorio
-         public List<Object[]> seleccionar(Materia materia){
-        List<Object[]> resultado = null;
-        //----------------------------------
+    public boolean insertarDocente(Docente docente) {
         if (ConexionBD.conectarBD()) {
             try {
-                String procedimiento = "{CALL seleccionarMaterias(?)}";
+                String procedimiento = "{CALL insertDoc(?,?,?,?)}";
                 CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
-                st.setInt(1, materia.getIdMateria());
-                ResultSet rst = st.executeQuery();
+                st.setInt(1, docente.getNumeroEmpleado());
+                st.setString(2, docente.getNombres());
+                st.setString(3, docente.getApellidos());
+                st.setInt(4, docente.getAcademia());
 
-                int cantCol = rst.getMetaData().getColumnCount();
-                resultado = new ArrayList();
+                st.execute();
 
-                while(rst.next()){
-                    Object[] registro = new Object[cantCol];
-                    for (int i = 0; i < cantCol; i++) {
-                        registro[i] = rst.getObject( i + 1);
-                    }//cierra for
-                    resultado.add(registro);
-                } //cierra while
-
-                return resultado;
+                return true;
             } catch (SQLException e) {
                 System.err.println("Error: " + e.getMessage());
-                return resultado;
+                return false;
             }//cierra catch
         } //cierraif
+        return false;
+    }//cierra metodo insertarDocente
 
-        //----------------------------------
-        return resultado;
+    public boolean actualizarDocente(Docente docente) {
+        if (ConexionBD.conectarBD()) {
+            try {
+                String procedimiento = "{CALL updateDoc(?,?,?,?)}";
+                CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
+
+//            	st.setInt(1, docente.getIdEmpleado());
+                st.setInt(1, docente.getNumeroEmpleado());
+                st.setString(2, docente.getNombres());
+                st.setString(3, docente.getApellidos());
+                st.setInt(4, docente.getAcademia());
+
+                st.execute();
+                return true;
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
+                return false;
+            }//cierra catch
+        } //cierraif
+        return false;
+    }//cierra metodo actualizar docente
+
+    public boolean borrarDocente(Docente docente) {
+        if (ConexionBD.conectarBD()) {
+            try {
+                String procedimiento = "{CALL deleteDoc(?)}"; // Nombre del procedimiento almacenado
+                CallableStatement st = ConexionBD.conexion.prepareCall(procedimiento);
+
+                st.setInt(1, docente.getIdEmpleado()); // Pasar el ID del registro a borrar
+
+                st.execute();
+                return true;
+            } catch (SQLException e) {
+                System.err.println("Error: " + e.getMessage());
+                return false;
+            }
+        }
+        return false;
     }
-    //----------------------------------------------------------------------------------
-      
-      
 
+    //----------------------------------------------------------------------------------
 }
